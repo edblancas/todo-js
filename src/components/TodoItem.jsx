@@ -23,6 +23,21 @@ export function TodoItem({ id, completed, title }) {
       })))
   }
 
+  // wont work cuz by the time the promise resolves the e.target has other value
+  // use the approach above to capture the value
+  // BETTER: USE ALWAYS ASYNC AND AWAIT
+  const handleToggleCompletedNotWorks = (e, id) => {
+    updateTodo(id, { completed: e.target.checked }).then(() => {
+      setTodos(todos.map((todo) => {
+        if (todo.id === id) {
+          return { ...todo, completed: e.target.checked }
+        }
+        return todo
+      }))
+    })
+  }
+
+
   return (
     <li className="list-group-item">
       <div className="row align-items-center">
@@ -33,7 +48,7 @@ export function TodoItem({ id, completed, title }) {
               className="form-check-input"
               type='checkbox'
               checked={completed}
-              onChange={(e) => handleToggleCompleted(e, id)} />
+              onChange={(e) => handleToggleCompletedNotWorks(e, id)} />
             <label htmlFor={id} className="form-check-label">{title}</label>
           </div>
         </div>
