@@ -12,21 +12,6 @@ export function TodoItem({ id, completed, title }) {
     }
   }
 
-  const handleToggleCompleted = async (e, id) => {
-    const checked = e.target.checked
-    try {
-      await updateTodo(id, { completed: checked })
-      setTodos(todos.map((todo) => {
-        if (todo.id === id) {
-          return { ...todo, completed: checked }
-        }
-        return todo
-      }))
-    } catch (error) {
-      console.log('error toggle todo')
-    }
-  }
-
   const handleToggleCompleted2 = (e, id) => {
     const checked = e.target.checked
     updateTodo(id, { completed: checked }).then(() =>
