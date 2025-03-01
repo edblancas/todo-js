@@ -12,7 +12,7 @@ export function TodoItem({ id, completed, title }) {
     }
   }
 
-  const handleToggleCompleted2 = (e, id) => {
+  const handleToggleCompleted = (e, id) => {
     const checked = e.target.checked
     updateTodo(id, { completed: checked }).then(() =>
       setTodos(todos.map((todo) => {
@@ -33,7 +33,7 @@ export function TodoItem({ id, completed, title }) {
               className="form-check-input"
               type='checkbox'
               checked={completed}
-              onChange={(e) => handleToggleCompleted2(e, id)} />
+              onChange={(e) => handleToggleCompleted(e, id)} />
             <label htmlFor={id} className="form-check-label">{title}</label>
           </div>
         </div>
