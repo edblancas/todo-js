@@ -37,6 +37,20 @@ export function TodoItem({ id, completed, title }) {
     })
   }
 
+  const handleToggleCompletedBetter = async (e, id) => {
+    const checked = e.target.checked
+    try {
+      await updateTodo(id, { completed: checked })
+      setTodos(todos.map((todo) => {
+        if (todo.id === id) {
+          return { ...todo, completed: checked }
+        }
+        return todo
+      }))
+    } catch (error) {
+      console.log('error toggle todo')
+    }
+  }
 
   return (
     <li className="list-group-item">
@@ -48,7 +62,7 @@ export function TodoItem({ id, completed, title }) {
               className="form-check-input"
               type='checkbox'
               checked={completed}
-              onChange={(e) => handleToggleCompletedNotWorks(e, id)} />
+              onChange={(e) => handleToggleCompletedBetter(e, id)} />
             <label htmlFor={id} className="form-check-label">{title}</label>
           </div>
         </div>
