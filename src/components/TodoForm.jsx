@@ -1,17 +1,19 @@
 import { useState } from "react"
-import { useTodoContext } from "../App"
+import { useTodos } from "../App"
 import { addTodo } from "../api/todoServce"
 
 export function TodoForm() {
-  const { todos, setTodos, refInput } = useTodoContext()
+  const { todos, setTodos, refInput } = useTodos()
   const [newTodoTitle, setNewTodo] = useState()
 
   const handleOnSubmit = async (e) => {
     e.preventDefault()
+    if (newTodoTitle.trim() == '') return
     const newTodo = { title: newTodoTitle, completed: false, id: crypto.randomUUID() }
     try {
       addTodo(newTodo)
       setTodos([...todos, newTodo])
+      setNewTodo('')
     } catch (error) {
       console.error('error adding todo', error)
     }
