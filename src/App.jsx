@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react'
+import { createContext, useContext, useEffect, useRef, useState } from 'react'
 import { getAllTodos } from './api/todoServce'
 import { TodoForm } from './components/TodoForm'
 import { TodoList } from './components/TodoList'
@@ -9,7 +9,6 @@ export const useTodoContext = () => useContext(TodoContext)
 function App() {
   const [todos, setTodos] = useState([])
   const refInput = useRef(null)
-  const contextValue = useMemo(() => ({ todos, setTodos, refInput }), [todos]);
 
   useEffect(() => {
     const fetchTodos = async () => {
@@ -28,7 +27,7 @@ function App() {
   }
 
   return (
-    <TodoContext.Provider value={contextValue}>
+    <TodoContext.Provider value={{ todos, setTodos, refInput }}>
       <div className='container'>
         <div className="col-md-12 mb-3">
           <TodoForm />
