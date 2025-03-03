@@ -1,8 +1,8 @@
-import { useTodoContext } from "../App"
+import { useTodos } from "../App"
 import { deleteTodo, updateTodo } from "../api/todoServce"
 
 export function TodoItem({ id, completed, title }) {
-  const { todos, setTodos } = useTodoContext()
+  const { todos, setTodos } = useTodos()
   const handleDelete = async (id) => {
     try {
       deleteTodo(id)
