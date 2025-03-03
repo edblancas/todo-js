@@ -23,7 +23,7 @@ function App() {
   }, []);
 
   const handleOnClickFocus = () => {
-    refInput.current.focus()
+    refInput.current && refInput.current.focus()
   }
 
   return (
